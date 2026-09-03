@@ -1,0 +1,19 @@
+# environnement
+.venv/
+
+# caches Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# artefacts de build
+*.egg-info/
+build/
+dist/
+
+# notebooks
+.ipynb_checkpoints/
+
+# éditeurs
+.vscode/
+.idea/
