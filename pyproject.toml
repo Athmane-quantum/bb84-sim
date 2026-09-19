@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Athmane Mekhalfia" }]
-dependencies = []
+dependencies = ["qiskit>=1.0"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]

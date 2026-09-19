@@ -1,4 +1,5 @@
 import random
+from qiskit import QuantumCircuit
 def random_bits(n):
     bits = []
     for i in range(n):
@@ -10,3 +11,14 @@ def random_bases(n):
     for i in range(n):
         bases.append(random.choice(["X", "Z"]))
     return bases
+
+def encode_qubit(bit: int, basis: str) -> QuantumCircuit:
+    qc = QuantumCircuit(1)
+    if bit == 1 and basis == "Z":
+        qc.x(0)
+    elif bit == 0 and basis == "X":
+        qc.h(0)
+    elif bit == 1 and basis == "X":
+        qc.x(0) 
+        qc.h(0)
+    return qc
