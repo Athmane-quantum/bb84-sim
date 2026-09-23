@@ -1,5 +1,6 @@
 import random
 from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
 def random_bits(n):
     bits = []
     for i in range(n):
@@ -22,3 +23,11 @@ def encode_qubit(bit: int, basis: str) -> QuantumCircuit:
         qc.x(0) 
         qc.h(0)
     return qc
+
+def measure_qubit(circuit: QuantumCircuit, basis: str) -> int:
+    qc = circuit.copy()
+    if basis == "X":
+        qc.h(0)
+    sv = Statevector.from_instruction(qc)
+    resultat, etat = sv.measure()  
+    return int(resultat)
