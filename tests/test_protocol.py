@@ -1,6 +1,6 @@
 from bb84.alice import random_bits, random_bases
-from bb84.protocol import transmit, sift
-
+from bb84.protocol import transmit, sift, qber
+import pytest
 def test_length():
     liste_alice_bits = random_bits(10)
     list_alice_bases = random_bases(10)
@@ -48,7 +48,8 @@ def test_protocol_v1_proof():
     liste_bob_bases = random_bases(1000)
     resultat_bob = transmit (liste_alice_bits, liste_alice_bases, liste_bob_bases)
     cle_alice, cle_bob = sift(liste_alice_bits, liste_alice_bases, liste_bob_bases, resultat_bob)
-    assert cle_alice == cle_bob
+    qber_test = qber(cle_alice, cle_bob)
+    assert qber_test == 0
 
 def test_sift_with_eve():
     liste_alice_bits = random_bits(2000)
@@ -56,10 +57,25 @@ def test_sift_with_eve():
     liste_bob_bases = random_bases(2000)
     resultat_bob = transmit (liste_alice_bits, liste_alice_bases, liste_bob_bases, eve=True)
     cle_alice, cle_bob = sift(liste_alice_bits, liste_alice_bases, liste_bob_bases, resultat_bob)
-    nb_erreurs = 0
-    for i in range(len(cle_alice)):
-        if cle_alice[i] != cle_bob[i]:
-            nb_erreurs = nb_erreurs + 1
-    taux_erreurs = nb_erreurs / len(cle_alice)
+    qber_test = qber(cle_alice, cle_bob)
+    taux_erreurs = qber_test
     assert taux_erreurs >= 0.18
     assert taux_erreurs <= 0.32
+
+def test_qber_logic_error():
+    liste_alice = [0, 1, 1, 0]
+    liste_bob = [0, 1, 0, 0]
+    qber_test = qber(liste_alice, liste_bob)
+    assert qber_test == 0.25
+
+def test_qber_logic_same():
+    liste_alice = [0, 1, 1, 0]
+    liste_bob = [0, 1, 1, 0]
+    qber_test = qber(liste_alice, liste_bob)
+    assert qber_test == 0
+
+def test_qber_logic_void():
+    with pytest.raises(ValueError):
+        qber([], [])
+    
+    

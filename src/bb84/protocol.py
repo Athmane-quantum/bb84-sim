@@ -19,3 +19,13 @@ def sift(alice_bits: list[int], alice_bases: list[str], bob_bases: list[str], bo
             bob_key.append(bob_results[i])
     return alice_key, bob_key
 
+def qber(alice_key: list[int], bob_key: list[int]) -> float:
+    if len(alice_key) == 0:
+        raise ValueError("clé vide : QBER indéfini")
+    nb_erreurs = 0
+    for i in range(len(alice_key)):
+        if alice_key[i] != bob_key[i]:
+            nb_erreurs = nb_erreurs + 1
+    taux_erreurs = nb_erreurs / len(alice_key)
+    return taux_erreurs
+
