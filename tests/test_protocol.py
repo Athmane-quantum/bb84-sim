@@ -41,3 +41,25 @@ def test_sift_statistical():
     valeur_alice = len(cle_alice)/1000
     assert valeur_alice >= 0.4
     assert valeur_alice <= 0.6
+
+def test_protocol_v1_proof():
+    liste_alice_bits = random_bits(1000)
+    liste_alice_bases = random_bases(1000)
+    liste_bob_bases = random_bases(1000)
+    resultat_bob = transmit (liste_alice_bits, liste_alice_bases, liste_bob_bases)
+    cle_alice, cle_bob = sift(liste_alice_bits, liste_alice_bases, liste_bob_bases, resultat_bob)
+    assert cle_alice == cle_bob
+
+def test_sift_with_eve():
+    liste_alice_bits = random_bits(2000)
+    liste_alice_bases = random_bases(2000)
+    liste_bob_bases = random_bases(2000)
+    resultat_bob = transmit (liste_alice_bits, liste_alice_bases, liste_bob_bases, eve=True)
+    cle_alice, cle_bob = sift(liste_alice_bits, liste_alice_bases, liste_bob_bases, resultat_bob)
+    nb_erreurs = 0
+    for i in range(len(cle_alice)):
+        if cle_alice[i] != cle_bob[i]:
+            nb_erreurs = nb_erreurs + 1
+    taux_erreurs = nb_erreurs / len(cle_alice)
+    assert taux_erreurs >= 0.18
+    assert taux_erreurs <= 0.32

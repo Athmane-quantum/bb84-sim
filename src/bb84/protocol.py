@@ -1,8 +1,11 @@
 from bb84.alice import encode_qubit, measure_qubit
-def transmit(alice_bits: list[int], alice_bases: list[str], bob_bases: list[str]) -> list[int]:
+from bb84.eve import eve_intercept
+def transmit(alice_bits: list[int], alice_bases: list[str], bob_bases: list[str], eve: bool = False) -> list[int]:
     panier = []
     for i in range(len(alice_bits)):
         circuit = encode_qubit(alice_bits[i], alice_bases[i])
+        if eve == True:
+            circuit = eve_intercept(circuit)
         resultat = measure_qubit(circuit, bob_bases[i])
         panier.append(resultat)
     return panier
@@ -15,3 +18,4 @@ def sift(alice_bits: list[int], alice_bases: list[str], bob_bases: list[str], bo
             alice_key.append(alice_bits[i])
             bob_key.append(bob_results[i])
     return alice_key, bob_key
+
