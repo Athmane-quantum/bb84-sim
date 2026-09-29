@@ -1,6 +1,6 @@
 # bb84-sim
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23041754.svg)](https://doi.org/10.5281/zenodo.23041754)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23041753.svg)](https://doi.org/10.5281/zenodo.23041753)
 
 A Python simulator of the BB84 quantum key distribution protocol, built with Qiskit.
 
@@ -88,4 +88,4 @@ MIT, see [LICENSE](LICENSE).
 
 ## Citation
 
-This software is archived on Zenodo with DOI [10.5281/zenodo.23041754](https://doi.org/10.5281/zenodo.23041754). Citation metadata are in `CITATION.cff` (GitHub: "Cite this repository").
+This software is archived on Zenodo with DOI [10.5281/zenodo.23041753](https://doi.org/10.5281/zenodo.23041753). Citation metadata are in `CITATION.cff` (GitHub: "Cite this repository").
