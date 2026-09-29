@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+title: "BB84-Sim: a Python simulator of the BB84 quantum key distribution protocol"
+abstract: >-
+  BB84-Sim is a Python simulator of the BB84 quantum key distribution
+  protocol built on Qiskit. It models Alice's random bits and bases,
+  qubit encoding in the Z and X bases, Bob's measurement, basis sifting,
+  an intercept-resend eavesdropper (Eve), and the quantum bit error rate
+  (QBER). On a perfect channel the sifted keys match (QBER close to 0%);
+  under intercept-resend the QBER rises to about 25%, which makes the
+  eavesdropping detectable. The package is tested with pytest.
+authors:
+  - given-names: Athmane
+    family-names: Mekhalfia
+    orcid: "https://orcid.org/0009-0005-7797-1571"
+version: "1.0.0"
+date-released: "2026-09-29"
+license: MIT
+repository-code: "https://github.com/Athmane-quantum/bb84-sim"
+keywords:
+  - quantum key distribution
+  - BB84
+  - quantum cryptography
+  - Qiskit
+  - simulation
